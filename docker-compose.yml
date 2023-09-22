@@ -1,0 +1,30 @@
+version: "3.9"
+
+services:
+  # Our NestJS Api
+  api:
+    build: .
+    restart: always
+    volumes:
+      - .:/app
+      - /app/node_modules/
+    depends_on: 
+      - postgres
+    environment:
+      DATABASE_URL: postgres://postgres:niharika@postgres:5432/chatApp
+      JWT_SECRET: hard_to_guess_secret_123
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: niharika
+      POSTGRES_DB: chatApp
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: niharika
+      PORT: 3000
+    ports:
+      - 3000:3000
+
+  # Our Postgres Database for NestJS to connect to
+  postgres:
+    restart: always
+    image: postgres:10.4
+    ports:
+      - 5432:5432
