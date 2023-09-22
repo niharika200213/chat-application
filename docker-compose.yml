@@ -25,6 +25,11 @@ services:
   # Our Postgres Database for NestJS to connect to
   postgres:
     restart: always
+    volumes:
+      - postgres:/data/db
     image: postgres:10.4
     ports:
       - 5432:5432
+
+volumes:
+  postgres: {}
