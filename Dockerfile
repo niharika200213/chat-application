@@ -13,5 +13,8 @@ RUN npm ci
 # Bundle app source
 COPY . .
 
+RUN npm run build
+
+EXPOSE 3000
 # Creates a "dist" folder with the production build
-CMD ["npm", "start"]
+CMD ["npm", "run", "start:prod"]
